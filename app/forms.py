@@ -1,15 +1,24 @@
 # Flask imports
 from flask_wtf import FlaskForm
 
-from wtforms.fields import StringField, DateField, SubmitField
+from wtforms.fields import IntegerField, StringField, DateField, SubmitField
 from wtforms.validators import DataRequired
 
+
+class DeleteBookForm(FlaskForm):
+    submit = SubmitField('Borrar')
+
+
+class DeleteAuthorForm(FlaskForm):
+    submit = SubmitField('Borrar')
+
+
+class AuthorForm(FlaskForm):
+    name = StringField('Nombre del autor', validators=[DataRequired()])
+    submit = SubmitField('Guardar')
+
+
 class BookForm(FlaskForm):
-    name = StringField('Nombre', validators=[DataRequired()])
-    autor = StringField('Autor', validators=[DataRequired()])
-    color = StringField('Color portada', validators=[DataRequired()])
-    release_date = DateField('Fecha de publicacion', validators=[DataRequired()])
-    submit = SubmitField('Enviar')
-
-
-
+    title = StringField('Título del libro', validators=[DataRequired()])
+    author_id = IntegerField('ID del autor', validators=[DataRequired()])
+    submit = SubmitField('Guardar')
